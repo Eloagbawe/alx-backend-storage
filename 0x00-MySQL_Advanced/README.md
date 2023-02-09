@@ -23,4 +23,15 @@ solutions to mysql advanced exercises
         country, enumeration of countries: US, CO and TN, never null (= default will be the first element of the enumeration, here US)
 
     If the table already exists, your script should not fail
+
     Your script can be executed on any database
+
+2. Write a SQL script that ranks country origins of bands, ordered by the number of (non-unique) fans
+
+    Requirements:
+
+        Import this table dump: metal_bands.sql
+        Column names must be: origin and nb_fans
+        Your script can be executed on any database
+
+    Context: Calculate/compute something is always power intensive… better to distribute the load!
