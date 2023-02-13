@@ -1,0 +1,2 @@
+// This command creates or uses the database called my_db
+use my_db;
