@@ -3,21 +3,19 @@
 from pymongo import MongoClient
 
 
-if __name__ == "__main__":
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    nginx_collection = client.logs.nginx
-
-    count = nginx_collection.count_documents({})
-    get_count = nginx_collection.count_documents({'method': {'$regex': 'GET'}})
-    post_count = nginx_collection.count_documents(
+def log_stats(collection):
+    """This function provides some stats about Nginx logs stored in MongoDB"""
+    count = collection.count_documents({})
+    get_count = collection.count_documents({'method': {'$regex': 'GET'}})
+    post_count = collection.count_documents(
         {'method': {'$regex': 'POST'}})
-    put_count = nginx_collection.count_documents(
+    put_count = collection.count_documents(
         {'method': {'$regex': 'PUT'}})
-    patch_count = nginx_collection.count_documents(
+    patch_count = collection.count_documents(
         {'method': {'$regex': 'PATCH'}})
-    delete_count = nginx_collection.count_documents(
+    delete_count = collection.count_documents(
         {'method': {'$regex': 'DELETE'}})
-    status_check = nginx_collection.count_documents({'path': '/status'})
+    status_check = collection.count_documents({'path': '/status'})
     print(f"{count} logs")
     print("Methods:")
     print(f"\tmethod GET: {get_count}")
@@ -26,6 +24,7 @@ if __name__ == "__main__":
     print(f"\tmethod PATCH: {patch_count}")
     print(f"\tmethod DELETE: {delete_count}")
     print(f"{status_check} status check")
+
     # filtered_logs = nginx_collection.aggregate([
     #     {
     #         '$match': {'$and': [{'path': '/status'}, {'method': 'GET'}]}
@@ -36,3 +35,8 @@ if __name__ == "__main__":
     # ])
     # filtered_logs = list(filtered_logs)
     # print("{} status check".format(filtered_logs[0].get('filters')))
+
+
+if __name__ == "__main__":
+    nginx_collection = MongoClient('mongodb://127.0.0.1:27017').logs.nginx
+    log_stats(nginx_collection)
