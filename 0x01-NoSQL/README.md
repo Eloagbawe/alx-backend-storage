@@ -2,7 +2,9 @@ solutions to nosql exercises
 
 0. Write a script that lists all databases in MongoDB
 
+
 1. Write a script that creates or uses the database my_db
+
 
 2. Write a script that inserts a document in the collection school:
 
@@ -49,3 +51,9 @@ solutions to nosql exercises
         mongo_collection will be the pymongo collection object
         name (string) will be the school name to update
         topics (list of strings) will be the list of topics approached in the school
+
+11. Write a Python function that returns the list of school having a specific topic:
+
+        Prototype: def schools_by_topic(mongo_collection, topic):
+        mongo_collection will be the pymongo collection object
+        topic (string) will be topic searched
