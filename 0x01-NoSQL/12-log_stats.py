@@ -17,17 +17,19 @@ if __name__ == "__main__":
         {'method': 'PATCH'})
     delete_count = nginx_collection.count_documents(
         {'method': 'DELETE'})
-    status_check = list(
-        nginx_collection.aggregate([
-                {
-                    '$match': {'$and': [{'path': '/status'},
-                                        {'method': 'GET'}]}
-                },
-                {
-                    '$count': "filters"
-                }
-            ])
-    )[0].get('filters')
+    status_check = nginx_collection.count_documents({"path": "/status"})
+    # status_check = list(
+    #     nginx_collection.aggregate([
+    #             {
+    #                 '$match': {'$and': [{'path': '/status'},
+    #                                     {'method': 'GET'}]}
+    #             },
+    #             {
+    #                 '$count': "filters"
+    #             }
+    #         ])
+    # )[0].get('filters')
+
     print(f"{count} logs")
     print("Methods:")
     print(f"\tmethod GET: {get_count}")
