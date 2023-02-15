@@ -82,3 +82,6 @@ solutions to nosql exercises
         The top must be ordered
         The average score must be part of each item returns with key = averageScore
 
+15. Improve 12-log_stats.py by adding the top 10 of the most present IPs in the collection nginx of the database logs:
+
+        The IPs top must be sorted
